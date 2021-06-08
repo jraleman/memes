@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'gatsby';
 import { IconContext } from 'react-icons/lib';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { DiScala } from 'react-icons/di';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -38,8 +41,21 @@ const NavLogo = styled(Link)`
     align-items: center;
 `;
 
-const NavIcon = styled.div`
+const NavIcon = styled(DiScala)`
     margin: 0 0.5rem 0 2rem;
+`;
+
+const MobileIcon = styled.div`
+    display: none;
+    @media screen and (max-width: 980px) {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
 `;
 
 const Navbar = () => {
@@ -49,7 +65,7 @@ const Navbar = () => {
     const changeNav = () => {
         const isScroll = window.scrollY >= 80;
         setScroll(isScroll);
-    }
+    };
 
     useEffect(() => {
         changeNav();
@@ -58,6 +74,10 @@ const Navbar = () => {
             window.removeEventListener('scroll', changeNav);
         }
     }, []);
+
+    const handleOnClick = () => {
+        setClick(c => !c);
+    };
 
     return (
         <header>
@@ -68,6 +88,9 @@ const Navbar = () => {
                             <NavIcon />
                             Memes
                         </NavLogo>
+                        <MobileIcon onClick={handleOnClick}>
+                            {click ? <FaTimes /> : <FaBars />}
+                        </MobileIcon>
                     </NavContainer>
                 </Nav>
             </IconContext.Provider>

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import Layout from "../containers/Layout"
+import Layout from "../containers/layout"
 import Seo from "../components/seo"
 
 const Memes = () => (
