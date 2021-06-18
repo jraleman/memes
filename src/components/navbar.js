@@ -58,6 +58,50 @@ const MobileIcon = styled.div`
     }
 `;
 
+const NavMenu = styled.ul`
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    @media screen and (max-width: 960px) {
+        flex-direction: column;
+        width: 100%
+        height: 90vh;
+        position: absolute;
+        top: ${({ click }) => (click ? '100%' : '-1000px')}
+        opacity: 1;
+        transition: all 0.2 ease;
+        background: #fff;
+    }
+`;
+
+const NavLink = styled(Link)`
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    height: 100%;
+    font-family: "Ubuntu", sans-serif;
+    color: #141414;
+    @media screen and (max-width: 960px) {
+        text-align: center;
+        padding: 2rem;
+        width: 100%
+        display: table;
+        &:hover {
+            color: #ff4040;
+            transition: all 0.3s ease;
+        }
+    }
+`;
+
+const NavItem = styled.li`
+    height: 80px;
+    @media screen and (max-width: 960px) {
+        width: 100%;
+    }
+`;
+
 const Navbar = () => {
     const [click, setClick] = useState(false);
     const [scroll, setScroll] = useState(false);
@@ -91,6 +135,17 @@ const Navbar = () => {
                         <MobileIcon onClick={handleOnClick}>
                             {click ? <FaTimes /> : <FaBars />}
                         </MobileIcon>
+                        <NavMenu click={click}>
+                            <NavItem>
+                                <NavLink to="/home">Home</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink to="/memes">Memes</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink to="/about">About</NavLink>
+                            </NavItem>
+                        </NavMenu>
                     </NavContainer>
                 </Nav>
             </IconContext.Provider>
