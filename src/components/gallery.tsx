@@ -1,14 +1,22 @@
+import React from 'react';
 import Img from 'gatsby-image';
-import { useGallery } from '../hooks/useGallery';
+import useGallery from '../hooks/useGallery';
 
-const Gallery = () => {
+const Gallery = ({ title = 'gallery' }: IGallery) => {
     const images = useGallery();
 
     return (
-        <div>
-            {images.map(({ id, fluid }) => <Img key={id} fluid={fluid} />)}
-        </div>
+        <>
+            <h2>{title}</h2>
+            <div>
+                {images.map(({ id, fluid }) => <Img key={id} fluid={fluid} />)}
+            </div>
+        </>
     );
 };
+
+interface IGallery {
+    title?: string;
+}
 
 export default Gallery;
