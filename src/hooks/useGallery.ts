@@ -1,3 +1,6 @@
+import { useStaticQuery } from 'gatsby';
+import { graphql } from 'graphql';
+
 const useGallery = () => {
     const data = useStaticQuery(graphql`
       query {
@@ -17,7 +20,9 @@ const useGallery = () => {
     `);
   
     return data.allFile.nodes.map(node => ({
-      ...node.childImageSharp, // Note that we're spreading the childImageSharp object here
-      id: node.id,
+        ...node.childImageSharp, // Note that we're spreading the childImageSharp object here
+        id: node.id,
     }));
 };
+
+export default useGallery;
