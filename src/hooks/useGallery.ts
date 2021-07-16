@@ -1,12 +1,11 @@
-import { useStaticQuery } from 'gatsby';
-import { graphql } from 'graphql';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const useGallery = () => {
-    const data = useStaticQuery(query);
-    return data.allFile.nodes.map(node => ({
-        ...node.childImageSharp, // Note that we're spreading the childImageSharp object here
-        id: node.id,
-    }));
+  const data = useStaticQuery(query);
+  return data.allFile.nodes.map(node => ({
+    ...node.childImageSharp,
+    id: node.id,
+  }));
 };
 
 export const query = graphql`
