@@ -1,19 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 import useGallery from '../hooks/useGallery';
+import Modal from './modal';
 
 const Gallery = () => {
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const images = useGallery();
 
+  const handleOnClick = (idx) => {
+    setPhotoIndex(idx);
+    setIsOpen(true);
+  };
+
+  const onCloseRequest = () => {
+    setIsOpen(false);
+  };
+
+  const onMovePrevRequest = () => {
+    const idx = (photoIndex + images.length - 1) % images.length;
+    setPhotoIndex(idx);
+  };
+
+  const onMoveNextRequest = () => {
+    const idx = (photoIndex + 1) % images.length;
+    setPhotoIndex(idx);
+  };
+
+  // we can refactor this
+  // pages/meme.js
+  // gallery.js
+  // modal.js
   return (
-    <ImageWrapper>
-      {images.map(({ id, fluid }) => <Img key={id} fluid={fluid} />)}
-    </ImageWrapper>
+    <>
+      <Container>
+        {images.map(({ id, fluid }, idx) => fluid && (
+          <ImageWrapper onClick={() => handleOnClick(idx)}>
+            <Img key={id} fluid={fluid} />
+          </ImageWrapper>
+        ))}
+      </Container>
+      <Modal
+        images={images}
+        photoIndex={photoIndex}
+        isOpen={isOpen}
+        onClose={onCloseRequest}
+        onMovePrev={onMovePrevRequest}
+        onMoveNext={onMoveNextRequest}
+      />
+    </>
   );
 };
 
-const ImageWrapper = styled.div`
+const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 16vw;
@@ -40,6 +80,10 @@ const ImageWrapper = styled.div`
     grid-column: span 2;
     grid-row: span 2;
   }
+`;
+
+const ImageWrapper = styled.span`
+  display: inherit;
 `;
 
 export default Gallery;
