@@ -1,6 +1,5 @@
 import React from 'react';
 import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
 
 const Modal = ({
     images,
@@ -10,14 +9,17 @@ const Modal = ({
     onMovePrev,
     onMoveNext
 }) => {
-    if (!isOpen) {
+    const { src } = images[photoIndex].fluid;
+    const nextSrc = images[(photoIndex + 1) % images.length];
+    const prevSrc = images[(photoIndex + images.length - 1) % images.length];
+    if (!isOpen || !src) {
         return null;
     }
     return (
         <Lightbox
-            mainSrc={images[photoIndex].fluid.src}
-            nextSrc={images[(photoIndex + 1) % images.length]}
-            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+            mainSrc={src}
+            nextSrc={nextSrc}
+            prevSrc={prevSrc}
             onCloseRequest={onClose}
             onMovePrevRequest={onMovePrev}
             onMoveNextRequest={onMoveNext}
