@@ -1,5 +1,6 @@
 import React from 'react';
 import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 const Modal = ({
     images,
