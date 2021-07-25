@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
-import Gallery from '../components/gallery';
+import Memes from './memes';
 
 const IndexPage = () => (
   <Layout>
     <Seo title="Memes" />
-    <Gallery />
+    <Memes />
   </Layout>
 );
 
