@@ -1,11 +1,20 @@
+import { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const useGallery = () => {
+const useGallery = ({ randomSort }) => {
+  const [images, setImages] = useState([]);
   const data = useStaticQuery(query);
-  return data.allFile.nodes.map(node => ({
-    ...node.childImageSharp,
-    id: node.id,
-  }));
+  
+  useEffect(() => {
+    const parseImages = (node) => ({ ...node.childImageSharp, id: node.id });
+    const randomSorting = () => 0.5 - Math.random();
+
+    const arr = data.allFile.nodes.map(parseImages);
+    const imgs = !randomSort ? arr : arr.sort(randomSorting);
+    setImages(imgs)
+  }, [data]);
+
+  return images;
 };
 
 export const query = graphql`

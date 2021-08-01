@@ -6,7 +6,7 @@ import useGallery from '../hooks/useGallery';
 const Memes = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const images = useGallery();
+  const images = useGallery({ randomSort: true });
 
   const onCloseRequest = () => {
     setIsOpen(false);

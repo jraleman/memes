@@ -10,7 +10,7 @@ const Modal = ({
     onMovePrev,
     onMoveNext
 }) => {
-    const { src } = images[photoIndex].fluid;
+    const { src } = images[photoIndex]?.fluid || {};
     const nextSrc = images[(photoIndex + 1) % images.length];
     const prevSrc = images[(photoIndex + images.length - 1) % images.length];
     if (!isOpen || !src) {

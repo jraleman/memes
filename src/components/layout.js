@@ -18,13 +18,13 @@ const Layout = ({ children }) => {
     const data = useStaticQuery(query);
     const footerLabel = `© ${new Date().getFullYear()} Built with Gatsby`;
     return (
-        <>
+        <Container>
             <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
             <Content>
                 <main>{children}</main>
                 <Footer>{footerLabel}</Footer>
             </Content>
-        </>
+        </Container>
     );
 };
 
@@ -37,5 +37,7 @@ const Content = styled.div`
 const Footer = styled.footer`
   margin-top: 2rem;
 `;
+
+const Container = styled.div``;
 
 export default Layout;
