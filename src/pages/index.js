@@ -1,11 +1,14 @@
 import * as React from 'react';
-import Layout from '../components/layout';
-import Seo from '../components/seo';
+import Layout from 'src/components/layout';
+import Seo from 'src/components/seo';
+import Logo from 'src/components/logo';
 import Memes from './memes';
 
 const IndexPage = () => (
   <Layout>
     <Seo title="Memes" />
+    <Logo />
+    <hr />
     <Memes />
   </Layout>
 );
