@@ -1,5 +1,7 @@
 # Memes
 
+[![Gatsby Publisher](https://github.com/jraleman/memes/actions/workflows/main.yml/badge.svg)](https://github.com/jraleman/memes/actions/workflows/main.yml)
+
 My personal collection of memes saved through the years
 
 ## 🚀 Quick start
