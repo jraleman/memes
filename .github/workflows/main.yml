@@ -2,35 +2,16 @@ name: Gatsby Publisher
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - uses: enriikke/gatsby-gh-pages-action@v2
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: gh-pages
-          gatsby-args: --prefix-paths
-      - name: yarn install and build and deploy
-        run: |
-          yarn
-          yarn prebuild
-      - uses: peaceiris/actions-gh-pages@v2
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./public
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: build and test
-        run: |
-          yarn install
-          yarn build
-          yarn test
+          deploy-repo: jraleman.com/memes
