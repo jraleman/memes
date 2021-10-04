@@ -12,5 +12,5 @@ jobs:
       - uses: enriikke/gatsby-gh-pages-action@v2
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
-          gatsby-arg: build --prefix-paths
+          gatsby-args: build --prefix-paths
 
