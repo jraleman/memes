@@ -1,14 +1,16 @@
-on: push
 name: Gatsby Publisher
+on:
+  push:
+    branches:
+      - 'main' # The trigger of the this workflow
 jobs:
   build:
-    name: Build Gatsby Site
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Action uses Docker so only Linux is supported
     steps:
-    - uses: actions/checkout@master
-    - name: Build Gatsby Site
-      uses: jzweifel/gatsby-cli-github-action@master
-      with:
-        gatsby-arg: build --prefix-paths
-        deploy-branch: gh-pages
-        deploy-repo: memes
+      - uses: actions/checkout@v1 # Checkout your triggered branch
+      - uses: xmflsct/action-publish-gatsby@v1 # Uses this action to run further steps
+        with:
+          publishBranch: 'gh-pages' # Not required, default publishing branch is master
+          token: ${{ secrets.ACCESS_TOKEN }} # Your personal access token of GitHub, read more below of how to obtain one and keep it safe
+          gatsby-arg: build --prefix-paths
+
