@@ -1,9 +1,5 @@
 name: Gatsby Publisher
 
-  run: |
-      git config --local user.email "action@github.com"
-      git config --local user.name "GitHub Action"
-
 on:
   push:
     branches:
@@ -17,7 +13,7 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
-    run: |
+    - run: |
         git config --global user.name 'jraleman'
         git config --global user.email 'jraleman@bendiburg.com'
     - run: yarn install
