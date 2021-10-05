@@ -13,7 +13,13 @@ jobs:
     - uses: oleksiyrudenko/gha-git-credentials@v2-latest
       with:
         token: '${{ secrets.GITHUB_TOKEN }}'
-    - run: git remote set-url origin git@github.com:jraleman/meme.git
+    - run: |
+        if [[ "${{secrets.ACCESS_TOKEN}}" == "" ]]; then
+          echo The secret does not exist
+        else
+          echo The secret exists
+          echo '${{ secrets.ACCESS_TOKEN }}'
+        fi
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
