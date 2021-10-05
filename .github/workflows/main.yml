@@ -13,15 +13,11 @@ jobs:
     - uses: oleksiyrudenko/gha-git-credentials@v2-latest
       with:
         token: '${{ secrets.GITHUB_TOKEN }}'
-    - run: |
-        if [[ "${{secrets.ACCESS_TOKEN}}" == "" ]]; then
-          echo The secret does not exist
-        else
-          echo The secret exists
-          echo '${{ secrets.ACCESS_TOKEN }}'
-        fi
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
     - run: yarn install
+    - run: |
+        git config --global user.name 'jraleman'
+        git config --global user.email 'jraleman@bendiburg.com'
     - run: yarn run deploy
