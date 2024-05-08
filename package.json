@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "author": "Jose Ramon Aleman <jraleman@bendiburg.com>",
   "dependencies": {
+    "caniuse-lite": "^1.0.30001616",
     "gatsby": "^3.6.2",
     "gatsby-image": "^3.8.0",
     "gatsby-plugin-gatsby-cloud": "^2.6.1",
